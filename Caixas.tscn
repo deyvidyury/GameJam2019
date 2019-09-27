@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Caixas.gd" type="Script" id=1]
+[ext_resource path="res://caixa.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.9959, 7.97394 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "pegou"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.854902, 0.886275, 0.290196, 1 ), Color( 0.854902, 0.886275, 0.290196, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "apagar"
+} ]
+}
+
+[node name="Caixa" type="StaticBody2D"]
+position = Vector2( 50.6667, 62.2222 )
+collision_layer = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="corpo" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="animacao" type="AnimationPlayer" parent="."]
+anims/pegou = SubResource( 2 )
